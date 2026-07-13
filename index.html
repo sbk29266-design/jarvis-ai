@@ -1,22 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JARVIS AI</title>
+
+<style>
+body{
+background:#0d1117;
+font-family:Arial,sans-serif;
+color:white;
+margin:0;
+}
+
+.header{
+background:#161b22;
+padding:15px;
+text-align:center;
+font-size:28px;
+font-weight:bold;
+}
+
+.chat{
+height:70vh;
+padding:15px;
+overflow-y:auto;
+}
+
+.bot{
+background:#21262d;
+padding:12px;
+border-radius:10px;
+margin:10px 0;
+display:inline-block;
+}
+
+.input{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:#161b22;
+padding:10px;
+display:flex;
+}
+
+input{
+flex:1;
+padding:12px;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+margin-left:10px;
+padding:12px 18px;
+background:#238636;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+</style>
+
 </head>
 
-<body style="background:black;color:white;text-align:center;font-family:Arial;">
+<body>
 
-<h1>🤖 JARVIS AI</h1>
+<div class="header">🤖 JARVIS AI</div>
 
-<h2>Welcome Sandip</h2>
+<div class="chat" id="chat">
+<div class="bot">
+Hello Sandip 👋<br><br>
+I am your personal AI Assistant.
+</div>
+</div>
 
-<p>My First AI Website</p>
-
-<button onclick="hello()">Start Chat</button>
+<div class="input">
+<input id="msg" placeholder="Type your message...">
+<button onclick="send()">Send</button>
+</div>
 
 <script>
-function hello(){
-alert("Welcome Sandip 🚀");
+function send(){
+
+let text=document.getElementById("msg").value;
+
+if(text=="") return;
+
+let chat=document.getElementById("chat");
+
+chat.innerHTML+=
+"<div style='text-align:right;margin:10px'><span style='background:#238636;padding:10px;border-radius:10px'>"+text+"</span></div>";
+
+chat.innerHTML+=
+"<div class='bot'>I received your message:<br><b>"+text+"</b></div>";
+
+document.getElementById("msg").value="";
+
+chat.scrollTop=chat.scrollHeight;
+
 }
 </script>
 
