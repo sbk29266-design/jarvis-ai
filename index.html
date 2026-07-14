@@ -83,7 +83,44 @@ I am your personal AI Assistant.
 <input id="msg" placeholder="Type your message...">
 <button onclick="send()">Send</button>
 </div>
+<script>
+async function send() {
+  const input = document.getElementById("msg");
+  const text = input.value.trim();
 
+  if (!text) return;
+
+  const chat = document.getElementById("chat");
+
+  chat.innerHTML += `
+  <div style="text-align:right;margin:10px;">
+    <span style="background:#238636;padding:12px;border-radius:10px;display:inline-block;">
+      ${text}
+    </span>
+  </div>`;
+
+  input.value = "";
+
+  const res = await fetch("/.netlify/functions/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: text
+    })
+  });
+
+  const data = await res.json();
+
+  chat.innerHTML += `
+  <div class="bot">
+    🤖 ${data.reply}
+  </div>`;
+
+  chat.scrollTop = chat.scrollHeight;
+}
+</script>
 
 
 </body>
