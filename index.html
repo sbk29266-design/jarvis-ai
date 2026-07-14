@@ -84,45 +84,7 @@ I am your personal AI Assistant.
 <button onclick="send()">Send</button>
 </div>
 
-<script>
 
-function send(){
-
-let input=document.getElementById("msg");
-
-let text=input.value;
-
-if(text=="") return;
-
-let chat=document.getElementById("chat");
-
-chat.innerHTML+=`
-<div style="text-align:right;margin:10px;">
-<span style="background:#238636;padding:12px;border-radius:10px;display:inline-block;">
-${text}
-</span>
-</div>
-`;
-
-setTimeout(function(){
-
-chat.innerHTML+=`
-<div class="bot">
-🤖 Sorry! Real AI is not connected yet.<br><br>
-You said:<br>
-<b>${text}</b>
-</div>
-`;
-
-chat.scrollTop=chat.scrollHeight;
-
-},600);
-
-input.value="";
-
-}
-
-</script>
 
 </body>
 </html>
